@@ -17,3 +17,5 @@ login  : se inicia con el correo y el nit como contrasenia no tiene encriptacion
 consulta1 : El cliente que mas compro en $$
 
 consulta2  : los 3 productos mas vendidos
+
+la url es en el puerto 8098 que es el servidor
