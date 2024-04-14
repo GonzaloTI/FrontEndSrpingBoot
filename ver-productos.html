@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+</head>
+<body>
+    <div id="user-info">
+        <p>Nombre: <span id="user-name"></span></p>
+        <p>ID: <span id="user-id"></span></p>
+      </div>
+    <button id="btnTerminarCompra" class="btn-terminar">Terminar Compra</button>
+
+
+
+    
+    
+    <div class="container mt-5">
+        <h2>Productos</h2>
+        <table id="tablaProductos" style="display: none;" class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se mostrarán los productos -->
+            </tbody>
+        </table>
+    </div>
+
+    <td>
+        <input type="number" class="input-cantidad" min="1" value="1">
+    </td>
+
+<div id="carrito">
+        <h2>Carrito</h2>
+        <ul id="listaCarrito">
+            <!-- Aquí se mostrarán los productos agregados al carrito -->
+        </ul>
+    </div>
+    <div id="total">
+        <h2>Total</h2>
+        <p id="totalValor">$0</p>
+    </div>
+    <script src="api.js"></script>
+    <script>
+        cargarProductos();
+    </script>
+
+
+
+
+
+</body>
+</html>

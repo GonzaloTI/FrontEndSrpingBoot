@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Consulta</title>
+</head>
+<body>
+    <h2>Consulta 2 - 3 PRODUCTOS MAS COMPRADOS</h2>
+    <form id="consultaForm">
+        <label for="fechaInicio">Fecha de inicio:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" required><br><br>
+        
+        <label for="fechaFin">Fecha de fin:</label>
+        <input type="date" id="fechaFin" name="fechaFin" required><br><br>
+        
+        <button type="submit">Consultar</button>
+    </form>
+    
+    <div id="resultado"></div>
+
+    <script>
+        document.getElementById("consultaForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var fechaInicioget = document.getElementById("fechaInicio").value;
+            var fechaFinget = document.getElementById("fechaFin").value;
+
+            // Hacer la solicitud a la API con las fechas proporcionadas
+          
+            datos={};
+
+     datos = {
+        fechainicio: fechaInicioget,
+        fechafin:fechaFinget
+    }; 
+     console.log(datos);
+    fetch("http://localhost:8098/venta/consulta2", {
+        method: "POST", // Método de la solicitud POST
+        headers: {
+            "Content-Type": "application/json" // Tipo de contenido JSON
+        },
+        body: JSON.stringify(datos) // Convertir el objeto a JSON y enviarlo en el cuerpo de la solicitud
+    })
+    .then(response => response.json())
+    .then(data => {  // Manejar la respuesta y mostrar el resultado debajo del formulario
+                    var resultadoDiv = document.getElementById("resultado");
+                    resultadoDiv.innerHTML = ""; // Limpiar el contenido anterior
+
+                    // Mostrar el resultado
+                    var resultadoHTML = "<h3>Resultado:</h3>";
+                    resultadoHTML += "<p>Mensaje: " + " 3 PRODUCTOS MAS COMPRADOS "+ "</p>";
+                    resultadoHTML += "<ul>";
+                    data.object.forEach(function(item) {
+                        resultadoHTML += "<li> NOMBRE PRODUCTO:     "    + item.nombre    + "    ,   TOTAL COMPRADO:   " + item.stock + "</li>";
+                    });
+                    resultadoHTML += "</ul>";
+
+                    resultadoDiv.innerHTML = resultadoHTML;
+    })
+    .catch(error => console.error("Error al realizar la solicitud:", error));
+});
+    </script>
+</body>
+</html>
